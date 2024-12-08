@@ -1,7 +1,27 @@
+import path from 'node:path'
 import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': `${path.resolve(__dirname, 'src')}/`,
+    },
+  },
+  plugins: [vue(), AutoImport({
+    imports: [
+      'vue',
+      'vue-router',
+      'pinia',
+      '@vueuse/core',
+    ],
+    dts: 'src/auto-imports.d.ts',
+  }), Components({
+    dts: 'src/components.d.ts',
+  })],
+  server: {
+    port: 8080,
+  },
 })
