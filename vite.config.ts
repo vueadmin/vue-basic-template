@@ -2,6 +2,7 @@ import path from 'node:path'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import VueRouter from 'unplugin-vue-router/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -10,7 +11,7 @@ export default defineConfig({
       '@/': `${path.resolve(__dirname, 'src')}/`,
     },
   },
-  plugins: [vue(), AutoImport({
+  plugins: [vue(), VueRouter(), AutoImport({
     imports: [
       'vue',
       'vue-router',

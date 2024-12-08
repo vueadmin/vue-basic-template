@@ -1,8 +1,8 @@
 import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
-import Layout from '@/layout/index.vue'
-
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { routes } from 'vue-router/auto-routes'
+import Layout from '../layout/index.vue'
 
 const RootRoute: Array<RouteRecordRaw> = [
   {
@@ -10,8 +10,11 @@ const RootRoute: Array<RouteRecordRaw> = [
     name: 'Root',
     component: Layout,
     meta: {
-      title: 'Root',
+      title: '图书管理中心',
     },
+    children: [
+      ...routes,
+    ],
   },
 ]
 

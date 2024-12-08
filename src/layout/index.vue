@@ -1,9 +1,17 @@
+<script lang="ts" setup>
+import Aside from './components/aside.vue'
+</script>
+
 <template>
   <div class="container">
     <div class="header" />
     <div class="content">
-      <div class="aside" />
-      <div class="main" />
+      <div class="aside">
+        <Aside />
+      </div>
+      <div class="main">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
@@ -13,7 +21,7 @@ $header-height: 50px;
 $aside-width: 200px;
 
 $header-bg-color: #cbe1f1;
-$aside-bg-color: #dcebfd;
+$aside-bg-color: #fff;
 $main-bg-color: #eef5fe;
 
 .container {

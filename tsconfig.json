@@ -11,7 +11,8 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "vite/client"
+      "vite/client",
+      "unplugin-vue-router/client"
     ],
     "strict": true,
     "strictNullChecks": true,
@@ -20,5 +21,8 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },
+  "include": [
+    "./typed-router.d.ts"
+  ],
   "exclude": ["dist", "node_modules"]
 }
