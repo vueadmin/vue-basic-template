@@ -1,9 +1,22 @@
 import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
+import Layout from '@/layout/index.vue'
+
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-export const mergeRouter: Array<RouteRecordRaw> = [
+const RootRoute: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    name: 'Root',
+    component: Layout,
+    meta: {
+      title: 'Root',
+    },
+  },
+]
 
+export const mergeRouter: Array<RouteRecordRaw> = [
+  ...RootRoute,
 ]
 
 const router = createRouter({
