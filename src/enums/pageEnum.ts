@@ -1,4 +1,4 @@
-import { ResultEnum } from '@/enums/httpEnum'
+import { ResultEnum } from './httpEnum'
 
 export enum DialogEnum {
   DELETE = 'delete',
