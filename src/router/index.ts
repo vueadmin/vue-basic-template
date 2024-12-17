@@ -3,11 +3,12 @@ import type { RouteRecordRaw } from 'vue-router'
 import Layout from '@/layout/index.vue'
 import Login from '@/login/index.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouterGuards } from './router-guards'
 
 const RootRoute: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    name: 'Root',
+    path: '/home',
+    name: 'Home',
     component: Layout,
     meta: {
       title: '知识产权运营后台',
@@ -33,6 +34,7 @@ const router = createRouter({
 
 export function setupRouter(app: App) {
   app.use(router)
+  createRouterGuards(router)
 }
 
 export default router

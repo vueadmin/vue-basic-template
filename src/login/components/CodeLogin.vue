@@ -18,7 +18,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <el-form :model="loginForm" status-icon label-width="auto">
+  <el-form :model="loginForm">
     <el-form-item prop="username">
       <el-input
         v-model="loginForm.username"
