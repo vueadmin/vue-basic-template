@@ -31,35 +31,33 @@ async function onLogin() {
 </script>
 
 <template>
-  <div>
-    <el-form :model="loginForm">
-      <el-form-item prop="username">
-        <el-input
-          v-model="loginForm.username"
-          :prefix-icon="User"
-          autocomplete="off"
-          placeholder="请输入用户名"
-        />
-      </el-form-item>
-      <el-form-item prop="password">
-        <el-input
-          v-model="loginForm.password"
-          type="password"
-          :prefix-icon="Lock"
-          autocomplete="off"
-          placeholder="请输入密码"
-        />
-      </el-form-item>
-      <el-form-item>
-        <el-checkbox label="记住账号" />
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onLogin">
-          登录
-        </el-button>
-      </el-form-item>
-    </el-form>
-  </div>
+  <el-form :model="loginForm">
+    <el-form-item prop="username">
+      <el-input
+        v-model="loginForm.username"
+        :prefix-icon="User"
+        autocomplete="off"
+        placeholder="请输入用户名"
+      />
+    </el-form-item>
+    <el-form-item prop="password">
+      <el-input
+        v-model="loginForm.password"
+        type="password"
+        :prefix-icon="Lock"
+        autocomplete="off"
+        placeholder="请输入密码"
+      />
+    </el-form-item>
+    <el-form-item>
+      <el-checkbox label="记住账号" />
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="onLogin">
+        登录
+      </el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <style scoped>
