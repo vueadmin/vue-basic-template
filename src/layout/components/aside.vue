@@ -1,63 +1,30 @@
 <script lang="ts" setup>
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from '@element-plus/icons-vue'
+import type { RouteRecordRaw } from 'vue-router'
+import { RootRoute } from '@/router'
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 
-function handleOpen(_key: string, _keyPath: string[]) {
-}
-function handleClose(_key: string, _keyPath: string[]) {
+const route = useRoute()
+
+// 默认
+const menus = ref<RouteRecordRaw[]>([])
+const activeIndex = ref('/dashboard')
+
+// 无子路由的名单
+const ChildrenRoute: string[] = ['/trademark', '/patent', '/academic-platform', '/sharing-technological-innovation']
+if (ChildrenRoute.includes(route.path)) {
+  // 直接查找名为 'Home' 的路由
+  const RootRouteItem = RootRoute.find(item => item.name === 'Home') as RouteRecordRaw
+  // 获取元素路由
+  const routeItem = RootRouteItem.children?.find(item => item.path === route.path) as RouteRecordRaw
+  menus.value = routeItem.children || []
 }
 </script>
 
 <template>
-  <el-menu
-    default-active="2"
-    class="el-menu-vertical-demo"
-    style="border: none;"
-    @open="handleOpen"
-    @close="handleClose"
-  >
-    <el-sub-menu index="1">
-      <template #title>
-        <el-icon><Location /></el-icon>
-        <span>Navigator One</span>
-      </template>
-      <el-menu-item-group title="Group One">
-        <el-menu-item index="1-1">
-          item one
-        </el-menu-item>
-        <el-menu-item index="1-2">
-          item two
-        </el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="Group Two">
-        <el-menu-item index="1-3">
-          item three
-        </el-menu-item>
-      </el-menu-item-group>
-      <el-sub-menu index="1-4">
-        <template #title>
-          item four
-        </template>
-        <el-menu-item index="1-4-1">
-          item one
-        </el-menu-item>
-      </el-sub-menu>
-    </el-sub-menu>
-    <el-menu-item index="2">
-      <el-icon><IconMenu /></el-icon>
-      <span>Navigator Two</span>
-    </el-menu-item>
-    <el-menu-item index="3" disabled>
-      <el-icon><Document /></el-icon>
-      <span>Navigator Three</span>
-    </el-menu-item>
-    <el-menu-item index="4">
-      <el-icon><Setting /></el-icon>
-      <span>Navigator Four</span>
+  <el-menu router :default-active="activeIndex">
+    <el-menu-item v-for="menu in menus" :key="menu.path" :index="menu.path">
+      {{ menu.meta?.title }}
     </el-menu-item>
   </el-menu>
 </template>

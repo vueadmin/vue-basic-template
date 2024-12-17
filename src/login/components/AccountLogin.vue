@@ -23,9 +23,9 @@ async function onLogin() {
   }
   const loginRes = await postLogin(loginParams) as unknown as LoginResponse
   if (loginRes.code === 200) {
-    systemStore.setUserInfo(loginRes.data) // 将用户数据存储到 Pinia
+    systemStore.userInfo = JSON.stringify(loginRes.data) // 将用户数据存储到 Pinia
     systemStore.token = loginRes.data.token // 保存 token
-    router.push({ path: '/home' })
+    router.push({ path: '/dashboard' })
   }
 }
 </script>
