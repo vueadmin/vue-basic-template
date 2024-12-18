@@ -13,8 +13,10 @@ const importPath = {
   TrademarkOpposition: () => import('@/views/IntellectualProperty/Trademark/TrademarkOpposition/index.vue'),
   // 商标驳回复审
   TrademarkRejection: () => import('@/views/IntellectualProperty/Trademark/TrademarkRejection/index.vue'),
-  // 国内外专利管理
-  PatentManage: () => import('@/views/IntellectualProperty/Patent/Patent/index.vue'),
+  // 国内专利管理
+  PatentOurCountry: () => import('@/views/IntellectualProperty/Patent/PatentOurCountry/index.vue'),
+  // 国外专利管理
+  PatentAbroad: () => import('@/views/IntellectualProperty/Patent/PatentAbroad/index.vue'),
   // 专利维权咨询
   PatentEnforcement: () => import('@/views/IntellectualProperty/Patent/PatentEnforcement/index.vue'),
   // 专利运营需求
@@ -88,18 +90,26 @@ const IntellectualPropertyRoute: Array<RouteRecordRaw> = [
         ],
       },
       {
-        path: '/patent',
+        path: 'patent',
         name: 'Patent',
         meta: {
           title: '专利管理',
         },
         children: [
           {
-            path: 'manage',
-            name: 'PatentManage',
-            component: importPath.PatentManage,
+            path: 'our-country',
+            name: 'PatentOurCountry',
+            component: importPath.PatentOurCountry,
             meta: {
-              title: '国内外专利',
+              title: '国内专利管理',
+            },
+          },
+          {
+            path: 'abroad',
+            name: 'PatentAbroad',
+            component: importPath.PatentAbroad,
+            meta: {
+              title: '国外专利管理',
             },
           },
           {
