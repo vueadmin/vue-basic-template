@@ -2,7 +2,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { RootRoute } from '@/router'
 import { useSystemStore } from '@/store/modules/systemStore/systemStore'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 // 获取当前路由
@@ -25,7 +25,7 @@ const HeaderMenus = computed(() => {
 })
 
 // 有路由的名单
-const ChildrenRoute: string[] = ['/trademark', '/patent', '/academic-platform', '/sharing-technological-innovation']
+const ChildrenRoute: string[] = ['/intellectual-property', '/academic', '/sharing-technological-innovation']
 
 // 初始化菜单
 function initMenus(path: string) {
@@ -34,26 +34,27 @@ function initMenus(path: string) {
   menus.value = routeItem.children || []
 }
 
-// 检查当前路径是否在有子路由名单中，并初始化菜单
-if (ChildrenRoute.includes(route.path)) {
-  initMenus(route.path)
-}
-
 function onSelectHeaderMenu(path: string) {
   activeHeaderPath.value = path
   initMenus(path)
 }
 
-function onSelectAsideMenu(path: string) {
+function onSelectAsideMenu(path: string, parse: string[]) {
   activeAsidePath.value = path
 
   const { value: headerPath } = activeHeaderPath
-  const routePath = `${headerPath}/${path}`
-
+  const routePath = `${headerPath}/${parse.join('/')}`
   if (router.getRoutes().some(route => route.path === routePath)) {
     router.push({ path: routePath })
   }
 }
+
+onMounted(() => {
+  // 检查当前路径是否在有子路由名单中，并初始化菜单
+  if (ChildrenRoute.includes(route.path)) {
+    onSelectHeaderMenu(route.path)
+  }
+})
 </script>
 
 <template>
@@ -77,9 +78,21 @@ function onSelectAsideMenu(path: string) {
     <div class="content">
       <div class="aside">
         <el-menu :default-active="activeAsidePath" @select="onSelectAsideMenu">
-          <el-menu-item v-for="menu in menus" :key="menu.path" :index="menu.path">
-            {{ menu.meta?.title }}
-          </el-menu-item>
+          <template v-if="activeHeaderPath === '/intellectual-property'">
+            <el-sub-menu v-for="menu in menus" :key="menu.path" :index="menu.path">
+              <template #title>
+                <span>{{ menu.meta?.title }}</span>
+              </template>
+              <el-menu-item v-for="item in menu.children" :key="item.path" :index="item.path">
+                {{ item.meta?.title }}
+              </el-menu-item>
+            </el-sub-menu>
+          </template>
+          <template v-else>
+            <el-menu-item v-for="menu in menus" :key="menu.path" :index="menu.path">
+              {{ menu.meta?.title }}
+            </el-menu-item>
+          </template>
         </el-menu>
       </div>
       <div class="main">

@@ -23,95 +23,105 @@ const importPath = {
 
 const IntellectualPropertyRoute: Array<RouteRecordRaw> = [
   {
-    path: '/trademark',
-    name: 'Trademark',
+    path: '/intellectual-property',
+    name: 'IntellectualProperty',
     meta: {
-      title: '商标管理',
+      title: '知识产权',
     },
     children: [
       {
-        path: 'manage',
-        name: 'TrademarkManage',
-        component: importPath.TrademarkManage,
+        path: 'trademark',
+        name: 'Trademark',
         meta: {
-          title: '国内外商标',
+          title: '商标管理',
         },
+        children: [
+          {
+            path: 'manage',
+            name: 'TrademarkManage',
+            component: importPath.TrademarkManage,
+            meta: {
+              title: '国内外商标',
+            },
+          },
+          {
+            path: 'renewal',
+            name: 'TrademarkRenewal',
+            component: importPath.TrademarkRenewal,
+            meta: {
+              title: '商标续展',
+            },
+          },
+          {
+            path: 'amendment',
+            name: 'TrademarkAmendment',
+            component: importPath.TrademarkAmendment,
+            meta: {
+              title: '商标变更',
+            },
+          },
+          {
+            path: 'cancellation',
+            name: 'ThreeYearNonUseCancellation',
+            component: importPath.ThreeYearNonUseCancellation,
+            meta: {
+              title: '商标撤三',
+            },
+          },
+          {
+            path: 'opposition',
+            name: 'TrademarkOpposition',
+            component: importPath.TrademarkOpposition,
+            meta: {
+              title: '商标异议无效',
+            },
+          },
+          {
+            path: 'rejection',
+            name: 'TrademarkRejection',
+            component: importPath.TrademarkRejection,
+            meta: {
+              title: '商标驳回复审',
+            },
+          },
+        ],
       },
       {
-        path: 'renewal',
-        name: 'TrademarkRenewal',
-        component: importPath.TrademarkRenewal,
+        path: '/patent',
+        name: 'Patent',
         meta: {
-          title: '商标续展',
+          title: '专利管理',
         },
-      },
-      {
-        path: 'amendment',
-        name: 'TrademarkAmendment',
-        component: importPath.TrademarkAmendment,
-        meta: {
-          title: '商标变更',
-        },
-      },
-      {
-        path: 'cancellation',
-        name: 'ThreeYearNonUseCancellation',
-        component: importPath.ThreeYearNonUseCancellation,
-        meta: {
-          title: '商标撤三',
-        },
-      },
-      {
-        path: 'opposition',
-        name: 'TrademarkOpposition',
-        component: importPath.TrademarkOpposition,
-        meta: {
-          title: '商标异议无效',
-        },
-      },
-      {
-        path: 'rejection',
-        name: 'TrademarkRejection',
-        component: importPath.TrademarkRejection,
-        meta: {
-          title: '商标驳回复审',
-        },
+        children: [
+          {
+            path: 'manage',
+            name: 'PatentManage',
+            component: importPath.PatentManage,
+            meta: {
+              title: '国内外专利',
+            },
+          },
+          {
+            path: 'enforcement',
+            name: 'PatentEnforcement',
+            component: importPath.PatentEnforcement,
+            meta: {
+              title: '专利维权咨询',
+            },
+          },
+          {
+            path: 'operations',
+            name: 'PatentOperations',
+            component: importPath.PatentOperations,
+            meta: {
+              title: '专利运营需求',
+            },
+          },
+        ],
       },
     ],
   },
-  {
-    path: '/patent',
-    name: 'Patent',
-    meta: {
-      title: '专利管理',
-    },
-    children: [
-      {
-        path: 'manage',
-        name: 'PatentManage',
-        component: importPath.PatentManage,
-        meta: {
-          title: '国内外专利',
-        },
-      },
-      {
-        path: 'enforcement',
-        name: 'PatentEnforcement',
-        component: importPath.PatentEnforcement,
-        meta: {
-          title: '专利维权咨询',
-        },
-      },
-      {
-        path: 'operations',
-        name: 'PatentOperations',
-        component: importPath.PatentOperations,
-        meta: {
-          title: '专利运营需求',
-        },
-      },
-    ],
-  },
+
 ]
 
 export default IntellectualPropertyRoute
