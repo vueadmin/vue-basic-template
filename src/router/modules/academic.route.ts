@@ -4,10 +4,11 @@ const importPath = {
   AcademicPlatform: () => import('@/views/AcademicPlatform/index.vue'),
 }
 
-const AcademicPlatformRoute: Array<RouteRecordRaw> = [
+const AcademicRoute: Array<RouteRecordRaw> = [
   {
     path: '/academic',
     name: 'Academic',
+    redirect: '/academic/article',
     meta: {
       title: '学术平台',
     },
@@ -24,4 +25,4 @@ const AcademicPlatformRoute: Array<RouteRecordRaw> = [
   },
 ]
 
-export default AcademicPlatformRoute
+export default AcademicRoute

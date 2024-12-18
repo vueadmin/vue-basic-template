@@ -5,7 +5,7 @@ import Login from '@/login/index.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 // 学术平台
-import AcademicPlatformRoute from './modules/academic-platform.route'
+import AcademicRoute from './modules/academic.route'
 // 工作台
 import DashboardRoute from './modules/dashboard.route'
 // 知识产权
@@ -30,7 +30,7 @@ export const RootRoute: Array<RouteRecordRaw> = [
     children: [
       ...DashboardRoute,
       ...IntellectualPropertyRoute,
-      ...AcademicPlatformRoute,
+      ...AcademicRoute,
       ...SharingTechnologicalInnovationRoute,
       ...PatentSearchRoute,
       ...NewsAnnouncementRoute,

@@ -25,6 +25,7 @@ const IntellectualPropertyRoute: Array<RouteRecordRaw> = [
   {
     path: '/intellectual-property',
     name: 'IntellectualProperty',
+    redirect: '/intellectual-property/trademark/manage',
     meta: {
       title: '知识产权',
     },

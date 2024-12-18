@@ -11,6 +11,7 @@ const SharingTechnologicalInnovationRoute: Array<RouteRecordRaw> = [
   {
     path: '/sharing-technological-innovation',
     name: 'SharingTechnologicalInnovation',
+    redirect: '/sharing-technological-innovation/technology-innovation-requirements',
     meta: {
       title: '共享技术创新',
     },

@@ -51,8 +51,8 @@ function onSelectAsideMenu(path: string, parse: string[]) {
 
 onMounted(() => {
   // 检查当前路径是否在有子路由名单中，并初始化菜单
-  if (ChildrenRoute.includes(route.path)) {
-    onSelectHeaderMenu(route.path)
+  if (ChildrenRoute.includes(route.matched[1].path)) {
+    onSelectHeaderMenu(route.matched[1].path)
   }
 })
 </script>
