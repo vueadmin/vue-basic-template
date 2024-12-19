@@ -173,12 +173,14 @@ $main-bg-color: #eef5fe;
       background-color: #fff;
       margin-top: .5rem;
       margin-left: .5rem;
+      :deep(.el-menu) {
+        border-right: 0;
+      }
     }
 
     .main {
       width: calc(100vw - #{$aside-width} - 1.5rem);
       height: calc(100vh - #{$header-height} - 1rem);
-      background-color: #fff;
       margin-top: .5rem;
       margin-left: .5rem;
     }

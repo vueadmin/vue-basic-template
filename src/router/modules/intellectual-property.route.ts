@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 const importPath = {
   // 国内外商标管理
-  TrademarkManage: () => import('@/views/IntellectualProperty/Trademark/Trademark/index.vue'),
+  TrademarkManage: () => import('@/views/IntellectualProperty/Trademark/TrademarkManage/index.vue'),
   // 商标续展
   TrademarkRenewal: () => import('@/views/IntellectualProperty/Trademark/TrademarkRenewal/index.vue'),
   // 商标变更

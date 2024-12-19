@@ -1,4 +1,5 @@
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import { useSystemStore } from '@/store/modules/systemStore/systemStore'
 import axios from 'axios'
 
 const axiosInstance = axios.create({
@@ -8,6 +9,9 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
+    const systemStore = useSystemStore()
+    const userInfo = JSON.parse(systemStore.userInfo)
+    config.headers[userInfo.tokenName] = userInfo.tokenValue
     return config
   },
   (error: AxiosError) => {

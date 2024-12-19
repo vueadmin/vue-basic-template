@@ -49,3 +49,25 @@ export async function postLogin(data: LoginParams) {
     httpErrorHandle()
   }
 }
+
+// 获取全部字典参数
+export async function getDictAll() {
+  try {
+    const res = await http(RequestHttpEnum.GET)('/system/dict/all')
+    return res
+  }
+  catch {
+    httpErrorHandle()
+  }
+}
+
+// 批量获取字典数据
+export async function postDictBatch(data: { categories: string[] }) {
+  try {
+    const res = await http(RequestHttpEnum.POST)('/system/dict/batch', data)
+    return res
+  }
+  catch {
+    httpErrorHandle()
+  }
+}

@@ -1,1 +1,1 @@
-export * from '@/axios/index'
+export * from '@/axios/system/system.api'

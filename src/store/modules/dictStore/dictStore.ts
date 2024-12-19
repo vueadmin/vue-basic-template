@@ -1,19 +1,25 @@
-import type { LoginResponse } from '@/axios/system/system'
-import { useLocalStorage } from '@vueuse/core'
+import type { BaseDataType, DataResponseType, DictAllResponse, DictBatchResponse } from './dictStore.d'
+import { getDictAll, postDictBatch } from '@/axios/index' // 确保你有这个 API 方法
 import { defineStore } from 'pinia'
 
-export const useSystemStore = defineStore('system', {
+export const useDictStore = defineStore('dict', {
   state: () => ({
-    user: null as LoginResponse['data'] | null,
-    token: useLocalStorage('UserToken', ''),
+    dictData: {} as DataResponseType,
   }),
   actions: {
-    setUser(data: LoginResponse['data']) {
-      this.user = data
+    setDictData(data: DataResponseType) {
+      this.dictData = data
     },
-    clearUser() {
-      this.user = null
-      this.token = ''
+    async fetchDictData() {
+      const res = await getDictAll() as unknown as DictAllResponse
+      // 提取全部字典字段
+      const categories = res.data.map((item: BaseDataType) => item.value)
+      // 手动加入字典
+      const manual = ['country', 'tech_maturity', 'region', 'technical_category', 'TRL']
+      // 合并字典
+      const allCategories = [...categories, ...manual]
+      const resBatch = await postDictBatch({ categories: allCategories }) as unknown as DictBatchResponse
+      this.setDictData(resBatch.data)
     },
   },
 })

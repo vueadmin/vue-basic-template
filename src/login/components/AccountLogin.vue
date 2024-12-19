@@ -8,8 +8,8 @@ import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
 const loginForm = reactive({
-  username: '测试',
-  password: '123456',
+  username: 'ops_user01',
+  password: 'P@ssw0rd123',
 })
 
 const router = useRouter() // 引入 Vue Router 实例
